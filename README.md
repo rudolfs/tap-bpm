@@ -2,7 +2,7 @@
 
 ![Tap tempo screenshot](./tap.png)
 
-A Tap Tempo app inspired by Ableton Live.
+A Tap Tempo app written in ReasonML.
 
 
 ### Keyboard shortcuts
