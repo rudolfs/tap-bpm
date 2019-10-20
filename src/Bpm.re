@@ -67,25 +67,11 @@ let createElement = (~children as _, ~quit, ()) =>
           dispatch(Start(dispose));
         };
 
-    let handleKeyPress = (e: NodeEvents.keyEventParams) => {
-      Key.Keycode.(
-        switch (e.keycode) {
-        | v when v == escape => quit(); Console.log("Quit");
-        | v when v == 1073742051 => () /* ignore ALT*/
-        | v when v == 113 => () /* ignore q*/
-        | _ => startStop(); Console.log("TAP"); Console.log(e.keycode);
-        }
-      );
-    };
-
     let content =
-      <View
-        style=Styles.container
-        onKeyDown=handleKeyPress
-        ref={ r => Focus.focus(r) }
-        >
+      <View style=Styles.container>
         <TapButton text="Tap" onClick=startStop />
         <TempoDisplay value={state.elapsedTime |> Time.toSeconds} />
+        <KeyboardInput tapCallback=startStop quit/>
       </View>;
 
     (hooks, content);

@@ -19,7 +19,7 @@ let init = app => {
       "BPM",
     );
 
-  let _ = UI.start(win, <Bpm quit/>);
+  let _ = UI.start(win, <Bpm quit />);
 
   ();
 };
