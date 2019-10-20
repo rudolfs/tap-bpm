@@ -18,6 +18,7 @@ type state = {
   dispose,
   isRunning: bool,
   elapsedTime: Time.t,
+  bpm: string
 };
 
 type action =
@@ -25,17 +26,21 @@ type action =
   | Stop
   | TimerTick(Time.t);
 
-let reducer = (a, s) =>
+let bpm = (delta) => {
+  String.sub(string_of_float(60.0 /. delta), 0, 6)
+}
+
+let reducer = (a, state) =>
   switch (a) {
-  | Start(f) => {dispose: f, isRunning: true, elapsedTime: Seconds(0.)}
+  | Start(f) => {dispose: f, isRunning: true, elapsedTime: Seconds(0.), bpm: state.bpm}
   | Stop =>
-    s.dispose();
-    let ret = {dispose: noop, isRunning: false, elapsedTime: Seconds(0.)};
+    state.dispose();
+    let ret = {dispose: noop, isRunning: false, elapsedTime: Seconds(0.), bpm: bpm(state.elapsedTime |> Time.toSeconds)};
     ret;
   | TimerTick(t) => {
-      ...s,
+      ...state,
       elapsedTime:
-        s.isRunning ? Time.increment(s.elapsedTime, t) : s.elapsedTime,
+        state.isRunning ? Time.increment(state.elapsedTime, t) : state.elapsedTime,
     }
   };
 
@@ -49,6 +54,7 @@ let createElement = (~children as _, ~quit, ()) =>
           isRunning: false,
           dispose: noop,
           elapsedTime: Seconds(0.),
+          bpm: "BPM"
         },
         reducer,
         hooks,
@@ -70,7 +76,8 @@ let createElement = (~children as _, ~quit, ()) =>
     let content =
       <View style=Styles.container>
         <TapButton text="Tap" onClick=startStop />
-        <TempoDisplay value={state.elapsedTime |> Time.toSeconds} />
+        /* <TempoDisplay value={state.elapsedTime |> Time.toSeconds} /> */
+        <TempoDisplay value={state.bpm} />
         <KeyboardInput tapCallback=startStop quit/>
       </View>;
 

@@ -22,10 +22,10 @@ module Styles = {
 
 let component = React.component("Display");
 
-let createElement = (~children as _, ~value: float, ()) => {
+let createElement = (~children as _, ~value: string, ()) => {
   let content =
     <View style=Styles.container>
-      <Text style=Styles.text text={string_of_float(value)} />
+      <Text style=Styles.text text=value />
     </View>;
 
   component(hooks => (hooks, content));
