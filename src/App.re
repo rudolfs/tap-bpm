@@ -142,9 +142,9 @@ module Bpm = {
         Hooks.effect(OnMount, () => Some(() => dispatch(Stop)), hooks);
 
       let startStop = () =>
-        state.isRunning
-          ? dispatch(Stop)
-          : {
+        state.isRunning ?
+          dispatch(Stop) :
+          {
             let dispose =
               Tick.interval(t => dispatch(TimerTick(t)), Seconds(0.));
 
