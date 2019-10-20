@@ -43,7 +43,7 @@
     "@opam/merlin-extend": "0.4"
   },
   "scripts": {
-   "format": "bash -c \"refmt --in-place *.re\"",
+   "format": "bash -c \"refmt --in-place src/*.re\"",
    "run": "esy x App"
 
   },
