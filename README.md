@@ -15,4 +15,6 @@ A Tap Tempo app written in ReasonML.
 esy install       # install dependencies
 esy run           # build and run the app
 esy format        # run refmt on source files
+
+yarn dist         # build macOS package
 ```

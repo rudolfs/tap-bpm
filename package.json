@@ -1,7 +1,7 @@
 {
-  "name": "revery-quick-start",
-  "version": "1.3.0",
-  "description": "Revery quickstart",
+  "name": "tap-bpm",
+  "version": "0.0.1",
+  "description": "Tap BPM",
   "license": "MIT",
   "esy": {
     "build": "refmterr dune build -p App",
@@ -11,16 +11,16 @@
     ]
   },
   "revery-packager": {
-    "bundleName": "ExampleApp",
-    "bundleId": "com.example.app",
-    "displayName": "Revery Example App",
+    "bundleName": "TapBPM",
+    "bundleId": "com.tapbpm",
+    "displayName": "Tap BPM",
     "mainExecutable": "App",
     "windows": {
       "packages": ["zip"],
       "iconFile": "assets/icon.ico"
     },
     "darwin": {
-      "packages": ["tar", "dmg"],
+      "packages": ["dmg"],
       "iconFile": "assets/icon.icns"
     },
     "linux": {
@@ -43,8 +43,8 @@
   },
   "scripts": {
    "format": "bash -c \"refmt --in-place src/*.re\"",
-   "run": "esy x App"
-
+   "run": "esy x App",
+   "dist": "revery-packager"
   },
   "devDependencies": {
     "ocaml": "~4.7.0",
