@@ -2,6 +2,7 @@ open Revery;
 
 let init = app => {
   let _ = Revery.Log.listen((_, msg) => print_endline("LOG: " ++ msg));
+  let quit = () => App.quit(~code=0, app);
 
   let win =
     App.createWindow(
@@ -18,7 +19,7 @@ let init = app => {
       "BPM",
     );
 
-  let _ = UI.start(win, <Bpm />);
+  let _ = UI.start(win, <Bpm quit/>);
 
   ();
 };

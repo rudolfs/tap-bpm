@@ -2,6 +2,15 @@ open Revery;
 open Revery.Time;
 open Revery.UI;
 
+module Styles = {
+  let container = Style.[
+    justifyContent(`Center),
+    flexDirection(`Row),
+    flexWrap(`Wrap),
+    top(19),
+  ];
+}
+
 type dispose = unit => unit;
 let noop = () => ();
 
@@ -32,7 +41,7 @@ let reducer = (a, s) =>
 
 let component = React.component("Bpm");
 
-let createElement = (~children as _, ()) =>
+let createElement = (~children as _, ~quit, ()) =>
   component(hooks => {
     let (state, dispatch, hooks) =
       Hooks.reducer(
@@ -58,20 +67,23 @@ let createElement = (~children as _, ()) =>
           dispatch(Start(dispose));
         };
 
-    let handleKeyPress = (_event: NodeEvents.keyEventParams) => {
-      startStop();
-      Console.log("handle");
+    let handleKeyPress = (e: NodeEvents.keyEventParams) => {
+      Key.Keycode.(
+        switch (e.keycode) {
+        | v when v == escape => quit(); Console.log("Quit");
+        | v when v == 1073742051 => () /* ignore ALT*/
+        | v when v == 113 => () /* ignore q*/
+        | _ => startStop(); Console.log("TAP"); Console.log(e.keycode);
+        }
+      );
     };
 
     let content =
       <View
-        style=Style.[
-          justifyContent(`Center),
-          flexDirection(`Row),
-          flexWrap(`Wrap),
-          top(19),
-        ]
-        onKeyDown=handleKeyPress>
+        style=Styles.container
+        onKeyDown=handleKeyPress
+        ref={ r => Focus.focus(r) }
+        >
         <TapButton text="Tap" onClick=startStop />
         <TempoDisplay value={state.elapsedTime |> Time.toSeconds} />
       </View>;
