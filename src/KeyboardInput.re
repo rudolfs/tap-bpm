@@ -53,10 +53,9 @@ let createElement = (~children as _, ~quit, ~tapCallback, ()) =>
     let respondToKeys = (e: NodeEvents.keyEventParams) => {
       Key.Keycode.(
         switch (e.keycode) {
-        | v when v == escape => quit(); Console.log("Quit");
-        | v when v == 1073742051 => () /* ignore ALT*/
-        | v when v == 113 => () /* ignore q*/
-        | _ => Console.log("TAP"); tapCallback(); Console.log(e.keycode);
+        | v when (v == escape || v == 113) => quit(); Console.log("Quit");
+        | v when v == 32 => Console.log("TAP"); tapCallback(); Console.log(e.keycode);
+        | _ => Console.log(e.keycode);();
         }
       );
     };
