@@ -19,15 +19,23 @@ type state = {
   dispose,
   isRunning: bool,
   elapsedTime: Time.t,
-  bpm: string,
+  bpm: float,
 };
 
 type action =
   | Start(dispose)
   | Stop
+  | Tap(dispose)
   | TimerTick(Time.t);
 
-let bpm = delta => String.sub(string_of_float(60.0 /. delta), 0, 6);
+let calculateBpm = (~delta, ~prevBpm) => {
+  let elapsedSec = delta |> Time.toSeconds;
+  let currentBpm = 60.0 /. elapsedSec;
+
+  Console.log(prevBpm);
+  Console.log(currentBpm);
+  (prevBpm +. currentBpm) /. 2.0;
+}
 
 let reducer = (a, state) =>
   switch (a) {
@@ -43,7 +51,16 @@ let reducer = (a, state) =>
       dispose: noop,
       isRunning: false,
       elapsedTime: Seconds(0.),
-      bpm: bpm(state.elapsedTime |> Time.toSeconds),
+      bpm: calculateBpm(~delta=state.elapsedTime, ~prevBpm=state.bpm),
+    };
+    ret;
+  | Tap(f) =>
+    state.dispose();
+    let ret = {
+      dispose: f,
+      isRunning: true,
+      elapsedTime: Seconds(0.),
+      bpm: calculateBpm(~delta=state.elapsedTime, ~prevBpm=state.bpm),
     };
     ret;
   | TimerTick(t) => {
@@ -64,7 +81,7 @@ let createElement = (~children as _, ~quit, ()) =>
           isRunning: false,
           dispose: noop,
           elapsedTime: Seconds(0.),
-          bpm: "BPM",
+          bpm: 0.0,
         },
         reducer,
         hooks,
@@ -75,18 +92,27 @@ let createElement = (~children as _, ~quit, ()) =>
 
     let startStop = () =>
       if (state.isRunning) {
-        dispatch(Stop);
+        let dispose =
+          Tick.interval(t => dispatch(TimerTick(t)), Seconds(0.));
+        dispatch(Tap(dispose));
       } else {
         let dispose =
           Tick.interval(t => dispatch(TimerTick(t)), Seconds(0.));
         dispatch(Start(dispose));
       };
 
+    let bpmString =
+      if(state.bpm == 0.) {
+        "BPM"
+      } else {
+        String.sub(string_of_float(state.bpm), 0, 6)
+      }
+
     let content =
       <View style=Styles.container>
         <TapButton text="Tap" onClick=startStop />
-        /* <TempoDisplay value={state.elapsedTime |> Time.toSeconds} /> */
-        <TempoDisplay value={state.bpm} />
+        /* <TempoDisplay value={string_of_float(state.bpm)} /> */
+        <TempoDisplay value=bpmString />
         <KeyboardInput tapCallback=startStop quit />
       </View>;
 
