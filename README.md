@@ -1,14 +1,15 @@
-# Tap Tempo
-
-A Tap Tempo app inspired by Ableton Live.
+## Tap Tempo
 
 ![Tap tempo screenshot](./tap.png)
 
-Keyboard shortcuts:
+A Tap Tempo app inspired by Ableton Live.
+
+
+### Keyboard shortcuts
   - `ESC` or `q` quit app
   - `SPACE` tap tempo
 
-## Development
+### Development
 
 ```
 esy install       # install dependencies
