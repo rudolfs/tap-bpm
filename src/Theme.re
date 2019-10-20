@@ -9,7 +9,7 @@ module Color = {
   let grey4 = Color.rgb(0.82, 0.82, 0.82); /* active */
 
   let yellow = Color.rgb(1.0, 0.71, 0.20); /* action */
-}
+};
 
 module Typo = {
   let font = "Roboto-Regular.ttf";

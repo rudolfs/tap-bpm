@@ -3,13 +3,14 @@ open Revery.Time;
 open Revery.UI;
 
 module Styles = {
-  let container = Style.[
-    justifyContent(`Center),
-    flexDirection(`Row),
-    flexWrap(`Wrap),
-    top(19),
-  ];
-}
+  let container =
+    Style.[
+      justifyContent(`Center),
+      flexDirection(`Row),
+      flexWrap(`Wrap),
+      top(19),
+    ];
+};
 
 type dispose = unit => unit;
 let noop = () => ();
@@ -18,7 +19,7 @@ type state = {
   dispose,
   isRunning: bool,
   elapsedTime: Time.t,
-  bpm: string
+  bpm: string,
 };
 
 type action =
@@ -26,21 +27,30 @@ type action =
   | Stop
   | TimerTick(Time.t);
 
-let bpm = (delta) => {
-  String.sub(string_of_float(60.0 /. delta), 0, 6)
-}
+let bpm = delta => String.sub(string_of_float(60.0 /. delta), 0, 6);
 
 let reducer = (a, state) =>
   switch (a) {
-  | Start(f) => {dispose: f, isRunning: true, elapsedTime: Seconds(0.), bpm: state.bpm}
+  | Start(f) => {
+      dispose: f,
+      isRunning: true,
+      elapsedTime: Seconds(0.),
+      bpm: state.bpm,
+    }
   | Stop =>
     state.dispose();
-    let ret = {dispose: noop, isRunning: false, elapsedTime: Seconds(0.), bpm: bpm(state.elapsedTime |> Time.toSeconds)};
+    let ret = {
+      dispose: noop,
+      isRunning: false,
+      elapsedTime: Seconds(0.),
+      bpm: bpm(state.elapsedTime |> Time.toSeconds),
+    };
     ret;
   | TimerTick(t) => {
       ...state,
       elapsedTime:
-        state.isRunning ? Time.increment(state.elapsedTime, t) : state.elapsedTime,
+        state.isRunning ?
+          Time.increment(state.elapsedTime, t) : state.elapsedTime,
     }
   };
 
@@ -54,7 +64,7 @@ let createElement = (~children as _, ~quit, ()) =>
           isRunning: false,
           dispose: noop,
           elapsedTime: Seconds(0.),
-          bpm: "BPM"
+          bpm: "BPM",
         },
         reducer,
         hooks,
@@ -64,21 +74,20 @@ let createElement = (~children as _, ~quit, ()) =>
       Hooks.effect(OnMount, () => Some(() => dispatch(Stop)), hooks);
 
     let startStop = () =>
-      state.isRunning ?
-        dispatch(Stop) :
-        {
-          let dispose =
-            Tick.interval(t => dispatch(TimerTick(t)), Seconds(0.));
-
-          dispatch(Start(dispose));
-        };
+      if (state.isRunning) {
+        dispatch(Stop);
+      } else {
+        let dispose =
+          Tick.interval(t => dispatch(TimerTick(t)), Seconds(0.));
+        dispatch(Start(dispose));
+      };
 
     let content =
       <View style=Styles.container>
         <TapButton text="Tap" onClick=startStop />
         /* <TempoDisplay value={state.elapsedTime |> Time.toSeconds} /> */
         <TempoDisplay value={state.bpm} />
-        <KeyboardInput tapCallback=startStop quit/>
+        <KeyboardInput tapCallback=startStop quit />
       </View>;
 
     (hooks, content);

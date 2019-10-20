@@ -50,15 +50,21 @@ let createElement = (~children as _, ~quit, ~tapCallback, ()) =>
       Console.log("onFocus");
       dispatch(Focused(true));
     };
-    let respondToKeys = (e: NodeEvents.keyEventParams) => {
+    let respondToKeys = (e: NodeEvents.keyEventParams) =>
       Key.Keycode.(
         switch (e.keycode) {
-        | v when (v == escape || v == 113) => quit(); Console.log("Quit");
-        | v when v == 32 => Console.log("TAP"); tapCallback(); Console.log(e.keycode);
-        | _ => Console.log(e.keycode);();
+        | v when v == escape || v == 113 =>
+          quit();
+          Console.log("Quit");
+        | v when v == 32 =>
+          Console.log("TAP");
+          tapCallback();
+          Console.log(e.keycode);
+        | _ =>
+          Console.log(e.keycode);
+          ();
         }
       );
-    };
     (
       hooks,
       <View
@@ -66,6 +72,7 @@ let createElement = (~children as _, ~quit, ~tapCallback, ()) =>
         onBlur
         onFocus
         style=Style.[position(`Absolute), width(1), height(1)]
-        onKeyDown=respondToKeys />
+        onKeyDown=respondToKeys
+      />,
     );
   });
