@@ -2,6 +2,10 @@
 
 A Tap Tempo app inspired by Ableton Live.
 
+Keyboard shortcuts:
+  - `ESC` or `q` quit app
+  - `SPACE` tap tempo
+
 ## Development
 
 ```
