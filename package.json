@@ -44,7 +44,7 @@
   "scripts": {
    "format": "bash -c \"refmt --in-place src/*.re\"",
    "run": "esy x App",
-   "dist": "revery-packager"
+   "dist": "rm -rf _release && revery-packager"
   },
   "devDependencies": {
     "ocaml": "~4.7.0",
