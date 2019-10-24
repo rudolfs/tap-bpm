@@ -30,5 +30,5 @@ yarn dist         # build macOS package
 
 
 [0]: ./assets/screenshot.png
-[1]: https://github.com/rudolfs/tap/releases/download/v0.0.1/TapBPM.dmg
+[1]: https://github.com/rudolfs/tap-bpm/releases/download/v0.0.1/TapBPM.dmg
 [2]: https://www.fontsquirrel.com/license/roboto
