@@ -1,6 +1,6 @@
 ## Tap Tempo
 
-![Tap tempo screenshot](./tap.png)
+![Tap tempo screenshot](./assets/screenshot.png)
 
 A Tap Tempo app written in ReasonML.
 
