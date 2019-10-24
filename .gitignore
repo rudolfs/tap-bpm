@@ -61,7 +61,7 @@ typings/
 # next.js build output
 .next
 
-# esy 
+# esy
 _build/
 _esy/
 _release/
@@ -70,3 +70,4 @@ _release/
 *.install
 .merlin
 
+.DS_Store
