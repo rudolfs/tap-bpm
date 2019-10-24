@@ -42,12 +42,10 @@ let createElement = (~children as _, ~quit, ~tapCallback, ()) =>
       );
 
     let onBlur = () => {
-      Console.log("onBlur");
       dispatch(Focused(false));
     };
 
     let onFocus = () => {
-      Console.log("onFocus");
       dispatch(Focused(true));
     };
     let respondToKeys = (e: NodeEvents.keyEventParams) =>
@@ -55,13 +53,9 @@ let createElement = (~children as _, ~quit, ~tapCallback, ()) =>
         switch (e.keycode) {
         | v when v == escape || v == 113 =>
           quit();
-          Console.log("Quit");
         | v when v == 32 =>
-          Console.log("TAP");
           tapCallback();
-          Console.log(e.keycode);
         | _ =>
-          Console.log(e.keycode);
           ();
         }
       );
