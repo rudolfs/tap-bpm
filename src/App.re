@@ -16,7 +16,7 @@ let init = app => {
           (),
         ),
       app,
-      "BPM",
+      "TapBPM",
     );
 
   let _ = UI.start(win, <Bpm quit />);

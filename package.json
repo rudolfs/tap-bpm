@@ -1,7 +1,7 @@
 {
   "name": "tap-bpm",
   "version": "0.0.1",
-  "description": "Tap BPM",
+  "description": "Tap space-bar to find out BPM",
   "license": "MIT",
   "esy": {
     "build": "refmterr dune build -p App",
@@ -13,7 +13,7 @@
   "revery-packager": {
     "bundleName": "TapBPM",
     "bundleId": "com.tapbpm",
-    "displayName": "Tap BPM",
+    "displayName": "TapBPM",
     "mainExecutable": "App",
     "windows": {
       "packages": ["zip"],
@@ -21,6 +21,7 @@
     },
     "darwin": {
       "packages": ["dmg"],
+      "dmgBackground": "../../assets/dmg-background.png",
       "iconFile": "assets/icon.icns"
     },
     "linux": {
