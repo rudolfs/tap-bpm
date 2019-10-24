@@ -32,8 +32,6 @@ let calculateBpm = (~delta, ~prevBpm) => {
   let elapsedSec = delta |> Time.toSeconds;
   let currentBpm = 60.0 /. elapsedSec;
 
-  Console.log(prevBpm);
-  Console.log(currentBpm);
   (prevBpm +. currentBpm) /. 2.0;
 }
 
