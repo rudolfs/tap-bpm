@@ -52,7 +52,7 @@
   "scripts": {
     "format": "bash -c \"refmt --in-place src/*.re\"",
     "run": "esy x App",
-    "dist": "rm -rf _release && revery-packager"
+    "dist": "rm -rf _release && rm -rf _build && esy install && esy build && revery-packager"
   },
   "devDependencies": {
     "@opam/merlin": "*",
