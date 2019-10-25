@@ -6,13 +6,13 @@ A Tap Tempo app written in ReasonML.
 
 
 ### Download
-[macOS v0.0.1][1]
-[Linux v0.0.1][2]
+- [macOS v0.0.1][1]
+- [Linux v0.0.1][2]
 
 
 ### Keyboard shortcuts
-  - `ESC` or `q` quit app
-  - `SPACE` tap tempo
+- `ESC` or `q` quit app
+- `SPACE` tap tempo
 
 
 ### Development
