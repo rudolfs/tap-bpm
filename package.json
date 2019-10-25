@@ -55,8 +55,9 @@
     "dist": "rm -rf _release && revery-packager"
   },
   "devDependencies": {
-    "ocaml": "~4.7.0",
     "@opam/merlin": "*",
-    "esy-macdylibbundler": "*"
+    "esy-macdylibbundler": "*",
+    "ocaml": "~4.7.0",
+    "revery-packager": "^1.1.0"
   }
 }
