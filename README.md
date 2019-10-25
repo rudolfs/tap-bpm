@@ -7,6 +7,7 @@ A Tap Tempo app written in ReasonML.
 
 ### Download
 [macOS v0.0.1][1]
+[Linux v0.0.1][2]
 
 
 ### Keyboard shortcuts
@@ -26,9 +27,10 @@ yarn dist         # build macOS package
 
 
 ### Asset licenses
-`assets/Roboto-Regular.ttf` - [Apache v2.0][2]
+`assets/Roboto-Regular.ttf` - [Apache v2.0][3]
 
 
 [0]: ./assets/screenshot.png
 [1]: https://github.com/rudolfs/tap-bpm/releases/download/v0.0.1/TapBPM.dmg
-[2]: https://www.fontsquirrel.com/license/roboto
+[1]: https://github.com/rudolfs/tap-bpm/releases/download/v0.0.1/TapBPM-x86_64.AppImage
+[3]: https://www.fontsquirrel.com/license/roboto
