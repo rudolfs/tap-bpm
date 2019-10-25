@@ -16,16 +16,23 @@
     "displayName": "TapBPM",
     "mainExecutable": "App",
     "windows": {
-      "packages": ["zip"],
+      "packages": [
+        "zip"
+      ],
       "iconFile": "assets/icon.ico"
     },
     "darwin": {
-      "packages": ["dmg"],
+      "packages": [
+        "dmg"
+      ],
       "dmgBackground": "../../assets/dmg-background.png",
       "iconFile": "assets/icon.icns"
     },
     "linux": {
-      "packages": ["tar", "appimage"]
+      "packages": [
+        "tar",
+        "appimage"
+      ]
     }
   },
   "dependencies": {
@@ -43,9 +50,9 @@
     "@opam/merlin-extend": "0.4"
   },
   "scripts": {
-   "format": "bash -c \"refmt --in-place src/*.re\"",
-   "run": "esy x App",
-   "dist": "rm -rf _release && revery-packager"
+    "format": "bash -c \"refmt --in-place src/*.re\"",
+    "run": "esy x App",
+    "dist": "rm -rf _release && revery-packager"
   },
   "devDependencies": {
     "ocaml": "~4.7.0",
