@@ -33,7 +33,7 @@ let calculateBpm = (~delta, ~prevBpm) => {
   let currentBpm = 60.0 /. elapsedSec;
 
   (prevBpm +. currentBpm) /. 2.0;
-}
+};
 
 let reducer = (a, state) =>
   switch (a) {
@@ -64,8 +64,8 @@ let reducer = (a, state) =>
   | TimerTick(t) => {
       ...state,
       elapsedTime:
-        state.isRunning ?
-          Time.increment(state.elapsedTime, t) : state.elapsedTime,
+        state.isRunning
+          ? Time.increment(state.elapsedTime, t) : state.elapsedTime,
     }
   };
 
@@ -100,11 +100,11 @@ let createElement = (~children as _, ~quit, ()) =>
       };
 
     let bpmString =
-      if(state.bpm == 0.) {
-        "BPM"
+      if (state.bpm == 0.) {
+        "BPM";
       } else {
-        String.sub(string_of_float(state.bpm), 0, 6)
-      }
+        String.sub(string_of_float(state.bpm), 0, 6);
+      };
 
     let content =
       <View style=Styles.container>

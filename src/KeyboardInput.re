@@ -51,12 +51,9 @@ let createElement = (~children as _, ~quit, ~tapCallback, ()) =>
     let respondToKeys = (e: NodeEvents.keyEventParams) =>
       Key.Keycode.(
         switch (e.keycode) {
-        | v when v == escape || v == 113 =>
-          quit();
-        | v when v == 32 =>
-          tapCallback();
-        | _ =>
-          ();
+        | v when v == escape || v == 113 => quit()
+        | v when v == 32 => tapCallback()
+        | _ => ()
         }
       );
     (
