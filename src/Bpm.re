@@ -117,8 +117,8 @@ let createElement = (~children as _, ~quit, ()) =>
 
     let content =
       <View style=Styles.container>
-        <TapButton onClick=startStop />
-        <TempoDisplay value=bpmString />
+        <Tap onClick=startStop />
+        <Tempo value=bpmString />
         <KeyboardInput onKeyDown=handleKeyboardInput />
       </View>;
 

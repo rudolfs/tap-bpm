@@ -29,7 +29,7 @@ module Styles = {
     ];
 };
 
-let component = React.component("TapButton");
+let component = React.component("Tap");
 
 let createElement = (~onClick, ~children as _, ()) => {
   let content =

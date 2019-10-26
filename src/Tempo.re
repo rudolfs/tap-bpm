@@ -20,7 +20,7 @@ module Styles = {
     ];
 };
 
-let component = React.component("Display");
+let component = React.component("Tempo");
 
 let createElement = (~children as _, ~value: string, ()) => {
   let content =
