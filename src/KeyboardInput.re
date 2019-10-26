@@ -41,13 +41,9 @@ let createElement = (~children as _, ~onKeyDown, ()) =>
         hooks,
       );
 
-    let onBlur = () => {
-      dispatch(Focused(false));
-    };
+    let onBlur = () => dispatch(Focused(false));
 
-    let onFocus = () => {
-      dispatch(Focused(true));
-    };
+    let onFocus = () => dispatch(Focused(true));
     (
       hooks,
       <View

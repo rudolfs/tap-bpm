@@ -64,8 +64,8 @@ let reducer = (a, state) =>
   | TimerTick(t) => {
       ...state,
       elapsedTime:
-        state.isRunning
-          ? Time.increment(state.elapsedTime, t) : state.elapsedTime,
+        state.isRunning ?
+          Time.increment(state.elapsedTime, t) : state.elapsedTime,
     }
   };
 
@@ -99,7 +99,7 @@ let createElement = (~children as _, ~quit, ()) =>
         dispatch(Start(dispose));
       };
 
-    let bpmString =
+    let bpmAsString =
       if (state.bpm == 0.) {
         "BPM";
       } else {
@@ -118,7 +118,7 @@ let createElement = (~children as _, ~quit, ()) =>
     let content =
       <View style=Styles.container>
         <Tap onClick=startStop />
-        <Tempo value=bpmString />
+        <Tempo value=bpmAsString />
         <KeyboardInput onKeyDown=handleKeyboardInput />
       </View>;
 
