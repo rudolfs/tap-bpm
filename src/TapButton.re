@@ -31,10 +31,12 @@ module Styles = {
 
 let component = React.component("TapButton");
 
-let createElement = (~text: string, ~onClick, ~children as _, ()) => {
+let createElement = (~onClick, ~children as _, ()) => {
   let content =
     <Clickable style=Styles.clickable onClick>
-      <View style=Styles.container> <Text style=Styles.text text /> </View>
+      <View style=Styles.container>
+        <Text style=Styles.text text="Tap" />
+      </View>
     </Clickable>;
 
   component(hooks => (hooks, content));
