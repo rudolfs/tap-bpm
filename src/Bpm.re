@@ -106,11 +106,20 @@ let createElement = (~children as _, ~quit, ()) =>
         String.sub(string_of_float(state.bpm), 0, 6);
       };
 
+    let handleKeyboardInput = (e: NodeEvents.keyEventParams) =>
+      Key.Keycode.(
+        switch (e.keycode) {
+        | v when v == escape || v == 113 => quit()
+        | v when v == 32 => startStop()
+        | _ => ()
+        }
+      );
+
     let content =
       <View style=Styles.container>
         <TapButton onClick=startStop />
         <TempoDisplay value=bpmString />
-        <KeyboardInput tapCallback=startStop quit />
+        <KeyboardInput onKeyDown=handleKeyboardInput />
       </View>;
 
     (hooks, content);

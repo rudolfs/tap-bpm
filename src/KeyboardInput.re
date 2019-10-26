@@ -17,7 +17,7 @@ let reducer = (action, state) =>
   };
 let component = React.component("KeyboardInput");
 
-let createElement = (~children as _, ~quit, ~tapCallback, ()) =>
+let createElement = (~children as _, ~onKeyDown, ()) =>
   component(hooks => {
     let (v, dispatch, hooks) =
       Hooks.reducer(
@@ -48,22 +48,14 @@ let createElement = (~children as _, ~quit, ~tapCallback, ()) =>
     let onFocus = () => {
       dispatch(Focused(true));
     };
-    let respondToKeys = (e: NodeEvents.keyEventParams) =>
-      Key.Keycode.(
-        switch (e.keycode) {
-        | v when v == escape || v == 113 => quit()
-        | v when v == 32 => tapCallback()
-        | _ => ()
-        }
-      );
     (
       hooks,
       <View
         ref={r => dispatch(SetRef(r))}
         onBlur
         onFocus
+        onKeyDown
         style=Style.[position(`Absolute), width(1), height(1)]
-        onKeyDown=respondToKeys
       />,
     );
   });
