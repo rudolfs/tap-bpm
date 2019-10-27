@@ -1,5 +1,5 @@
 {
-  "checksum": "dd0a44e55ebcad2dbcf1243c6044c23e",
+  "checksum": "081db77284768686a949a8a44ed094ec",
   "root": "tap-bpm@link-dev:./package.json",
   "node": {
     "zip-stream@2.1.2@d41d8cd9": {
@@ -271,8 +271,8 @@
       },
       "overrides": [],
       "dependencies": [
-        "revery@0.28.0@d41d8cd9", "ocaml@4.7.1004@d41d8cd9",
-        "@opam/dune@opam:1.7.3@e23fe0a7"
+        "revery@github:revery-ui/revery#0137384@d41d8cd9",
+        "ocaml@4.7.1004@d41d8cd9", "@opam/dune@opam:1.7.3@e23fe0a7"
       ],
       "devDependencies": [
         "revery-packager@1.1.0@d41d8cd9", "ocaml@4.7.1004@d41d8cd9",
@@ -484,15 +484,13 @@
       ],
       "devDependencies": []
     },
-    "revery@0.28.0@d41d8cd9": {
-      "id": "revery@0.28.0@d41d8cd9",
+    "revery@github:revery-ui/revery#0137384@d41d8cd9": {
+      "id": "revery@github:revery-ui/revery#0137384@d41d8cd9",
       "name": "revery",
-      "version": "0.28.0",
+      "version": "github:revery-ui/revery#0137384",
       "source": {
         "type": "install",
-        "source": [
-          "archive:https://registry.npmjs.org/revery/-/revery-0.28.0.tgz#sha1:5d8ab27f8a8c70452a4d9c6e7b8015b184332863"
-        ]
+        "source": [ "github:revery-ui/revery#0137384" ]
       },
       "overrides": [],
       "dependencies": [
